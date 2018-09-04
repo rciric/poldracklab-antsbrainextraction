@@ -1,1 +1,1 @@
-from workflows.brainextraction import init_brain_extraction_wf
+from .workflows.brainextraction import init_brain_extraction_wf
