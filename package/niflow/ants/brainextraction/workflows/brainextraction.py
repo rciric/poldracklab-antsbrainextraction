@@ -143,8 +143,8 @@ def init_brain_extraction_wf(name='brain_extraction_wf',
 
     template_path = None
     if in_template == 'OASIS':
-        template_path = pkgr_fn('niflow.ants.brainextraction.data',
-                                'tpl-OASIS30ANTs')
+        template_path = pkgr_fn('niflow.ants.brainextraction',
+                                'data/tpl-OASIS30ANTs')
     else:
         template_path = in_template
 
@@ -227,8 +227,8 @@ def init_brain_extraction_wf(name='brain_extraction_wf',
     # Set up spatial normalization
     norm = pe.Node(Registration(
         from_file=pkgr_fn(
-            'niflow.ants.brainextraction.data',
-            'antsBrainExtraction_%s.json' % normalization_quality)),
+            'niflow.ants.brainextraction',
+            'data/antsBrainExtraction_%s.json' % normalization_quality)),
         name='norm',
         n_procs=omp_nthreads,
         mem_gb=mem_gb)

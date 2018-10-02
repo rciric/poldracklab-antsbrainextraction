@@ -55,7 +55,7 @@ class FixHeaderApplyTransforms(ApplyTransforms):
 
         _copyxform(self.inputs.reference_image,
                    os.path.abspath(self._gen_filename('output_image')),
-                   message='%s (niworkflows v%s)' % (
+                   message='%s (niflow.ants.brainextraction v%s)' % (
                        self.__class__.__name__, __version__))
         return runtime
 
