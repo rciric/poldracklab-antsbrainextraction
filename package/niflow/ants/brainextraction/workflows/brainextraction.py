@@ -23,7 +23,6 @@ from nipype.interfaces.fsl.maths import ApplyMask
 from nipype.interfaces.ants import N4BiasFieldCorrection
 
 # niworkflows
-from ..data import TEMPLATE_MAP, get_dataset
 from ..interfaces.ants import (
     ImageMath,
     ResampleImageBySpacing,
@@ -143,8 +142,9 @@ def init_brain_extraction_wf(name='brain_extraction_wf',
     wf = pe.Workflow(name)
 
     template_path = None
-    if in_template in TEMPLATE_MAP:
-        template_path = get_dataset(in_template)
+    if in_template == 'OASIS':
+        template_path = pkgr_fn('niflow.ants.brainextraction.data',
+                                'tpl-OASIS30ANTs')
     else:
         template_path = in_template
 
@@ -227,7 +227,7 @@ def init_brain_extraction_wf(name='brain_extraction_wf',
     # Set up spatial normalization
     norm = pe.Node(Registration(
         from_file=pkgr_fn(
-            'niworkflows.data',
+            'niflow.ants.brainextraction.data',
             'antsBrainExtraction_%s.json' % normalization_quality)),
         name='norm',
         n_procs=omp_nthreads,

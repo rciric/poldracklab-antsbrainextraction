@@ -37,8 +37,11 @@ def main():
         tests_require=ldict['TESTS_REQUIRES'],
         extras_require=ldict['EXTRA_REQUIRES'],
         # Data
-        package_data={},
-        include_package_data=False,
+        package_data={'niflow.ants.brainextraction': [
+            'data/antsBrainExtraction_*.json',
+            'data/tpl-OASIS30ANTs/*.nii.gz',
+            ]},
+        include_package_data=True,
     )
 
 
